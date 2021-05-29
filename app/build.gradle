@@ -77,6 +77,9 @@ dependencies {
     // Fragment
     implementation "androidx.fragment:fragment-ktx:$rootProject.fragment_ktx_version"
 
+    // Timber
+    implementation "com.jakewharton.timber:timber:$rootProject.timber_version"
+
     // Local Unit tests
 
     testImplementation "junit:junit:$rootProject.junit_version"
@@ -90,7 +93,6 @@ dependencies {
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$rootProject.coroutines_android_version"
 
     // Android tests
-
     // Core library
     androidTestImplementation "androidx.test:core:$rootProject.test_core_version"
     // AndroidJUnitRunner and JUnit Rules
