@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">SpaceXData</string>
+    <string name="retry">Retry</string>
+    <string name="empty_recycler">Looks like there is no data, pull down to refresh</string>
+    <string name="serial_newest">Serial: newest</string>
+    <string name="snackbar_action_retry">Retry</string>
+    <string name="sort_by">Sort By</string>
+    <string name="launch_year_newest">Launch Year Newest</string>
+    <string name="launch_year_oldest">Launch Year Oldest</string>
+    <string name="mission_name">Mission Name</string>
+    <string name="filter_by_success">Success</string>
+    <string name="filter_by">Filter By</string>
 </resources>

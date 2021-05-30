@@ -1,4 +1,4 @@
-package com.demo.spacexdata.data.testUtils
+package com.demo.spacexdata.testUtils
 
 import androidx.lifecycle.LiveData
 import java.util.concurrent.CountDownLatch

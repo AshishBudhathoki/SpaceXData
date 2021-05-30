@@ -3,8 +3,8 @@ package com.demo.spacexdata.data.repository
 import com.demo.spacexdata.api.SpaceXApi
 import com.demo.spacexdata.data.SpaceXDao
 import com.demo.spacexdata.data.model.Launch
-import com.demo.spacexdata.data.testUtils.testLaunch1
-import com.demo.spacexdata.data.testUtils.testLaunch2
+import com.demo.spacexdata.testUtils.testLaunch1
+import com.demo.spacexdata.testUtils.testLaunch2
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
 import kotlinx.coroutines.flow.collect
