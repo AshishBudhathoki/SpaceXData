@@ -19,12 +19,7 @@ class LaunchDetailRepository @Inject constructor(
     // Variables for showing/hiding loading indicators
     private val areLaunchDetailLoading: MutableLiveData<Boolean> = MutableLiveData(false)
 
-    // Set value to message to be shown in snackbar
-    private val launchDetailSnackBar = MutableLiveData<String>()
-
     fun getLaunchDetailLoadingStatus(): LiveData<Boolean> = areLaunchDetailLoading
-
-    fun getLaunchDetailSnackbar(): MutableLiveData<String> = launchDetailSnackBar
 
     suspend fun getLaunchDetailFromApi(flightNumber: Int): ResultWrapper<LaunchDetail> {
         return CustomNetworkCall.safeApiCall {
@@ -33,9 +28,12 @@ class LaunchDetailRepository @Inject constructor(
     }
 
     suspend fun getRocketDetailFromApi(rocketID: String): ResultWrapper<RocketDetail> {
-        return CustomNetworkCall.safeApiCall {
+        areLaunchDetailLoading.postValue(true)
+        val responseFromApi = CustomNetworkCall.safeApiCall {
             spaceXApi.getRocketDetails(rocketID).body()!!
         }
+        areLaunchDetailLoading.postValue(false)
+        return responseFromApi
     }
 
     object CustomNetworkCall {

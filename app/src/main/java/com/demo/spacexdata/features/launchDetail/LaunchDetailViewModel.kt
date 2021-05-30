@@ -20,7 +20,8 @@ class LaunchDetailViewModel @Inject constructor(
     lateinit var rocketDetail: RocketDetail
     private val _isLaunchDetailLoading: LiveData<Boolean> =
         repository.getLaunchDetailLoadingStatus()
-    private val _snackBar: MutableLiveData<String> = repository.getLaunchDetailSnackbar()
+    private val launchDetailSnackBar = MutableLiveData<String>()
+    private val _snackBar: MutableLiveData<String> = launchDetailSnackBar
 
 
     fun getLaunchDetailLoadingStatus() = _isLaunchDetailLoading
@@ -36,10 +37,10 @@ class LaunchDetailViewModel @Inject constructor(
         when (val rocketDetailFromApi = repository.getRocketDetailFromApi(rocketId)) {
             is ResultWrapper.Success ->
                 rocketDetail =
-                    rocketDetailFromApi.value // get result as CustomerResponse model class
-
+                    rocketDetailFromApi.value
             is ResultWrapper.GenericError -> {
                 var exception: Exception? = rocketDetailFromApi.error
+                launchDetailSnackBar.postValue(exception?.message)
             }
         }
     }
@@ -48,10 +49,10 @@ class LaunchDetailViewModel @Inject constructor(
         when (val launchDetailFromApi = repository.getLaunchDetailFromApi(flightNo)) {
             is ResultWrapper.Success ->
                 launchDetail =
-                    launchDetailFromApi.value // get result as CustomerResponse model class
-
+                    launchDetailFromApi.value
             is ResultWrapper.GenericError -> {
                 var exception: Exception? = launchDetailFromApi.error
+                launchDetailSnackBar.postValue(exception?.message)
             }
         }
     }
