@@ -123,10 +123,12 @@ class LaunchFragment : Fragment(R.layout.fragment_launch),
 
 
     // Respond to user clicks on recyclerView items
-    override fun onItemClicked(flightNumber: Int, itemView: View) {
-        Snackbar.make(itemView, flightNumber.toString(), Snackbar.LENGTH_SHORT).show()
+    override fun onItemClicked(flightNumber: String, rocketId: String, itemView: View) {
+        Snackbar.make(itemView, flightNumber, Snackbar.LENGTH_SHORT).show()
         val bundle = Bundle()
-        bundle.putString("FLIGHT_NUMBER", flightNumber.toString())
+        bundle.putString("FLIGHT_NUMBER", flightNumber)
+        bundle.putString("ROCKET_ID", rocketId)
+
 
         val launchDetailFragment = LaunchDetailFragment()
         launchDetailFragment.arguments = bundle

@@ -36,7 +36,8 @@ class LaunchesAdapter(private val itemClickListener: OnItemClickListener) :
                 textMissionName.text = launch.mission_name
                 itemView.setOnClickListener {
                     if (adapterPosition != -1) itemClickListener.onItemClicked(
-                        launch.flight_number,
+                        launch.flight_number.toString(),
+                        launch.rocket.rocket_id,
                         itemView
                     )
                 }
@@ -50,6 +51,6 @@ class LaunchesAdapter(private val itemClickListener: OnItemClickListener) :
     }
 
     interface OnItemClickListener {
-        fun onItemClicked(flightNumber: Int, itemView: View)
+        fun onItemClicked(flightNumber: String, rocketId: String, itemView: View)
     }
 }
