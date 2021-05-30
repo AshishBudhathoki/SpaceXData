@@ -1,4 +1,4 @@
-package com.demo.spacexdata.features
+package com.demo.spacexdata.features.launchDetail
 
 import androidx.fragment.app.Fragment
 

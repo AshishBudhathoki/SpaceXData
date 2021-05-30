@@ -1,4 +1,4 @@
-package com.demo.spacexdata.features
+package com.demo.spacexdata.features.launch
 
 import android.os.Bundle
 
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.demo.spacexdata.R
 import com.demo.spacexdata.data.model.Launch
 import com.demo.spacexdata.databinding.FragmentLaunchBinding
+import com.demo.spacexdata.features.launchDetail.LaunchDetailFragment
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 

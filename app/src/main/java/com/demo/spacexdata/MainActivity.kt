@@ -3,7 +3,7 @@ package com.demo.spacexdata
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.demo.spacexdata.databinding.ActivityMainBinding
-import com.demo.spacexdata.features.LaunchFragment
+import com.demo.spacexdata.features.launch.LaunchFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

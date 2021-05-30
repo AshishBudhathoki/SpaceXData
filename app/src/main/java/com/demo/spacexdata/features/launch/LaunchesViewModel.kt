@@ -1,4 +1,4 @@
-package com.demo.spacexdata.features
+package com.demo.spacexdata.features.launch
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -3,7 +3,6 @@ package com.demo.spacexdata.features.launch
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.demo.spacexdata.data.model.Launch
 import com.demo.spacexdata.data.repository.LaunchesRepository
-import com.demo.spacexdata.features.LaunchesViewModel
 import com.demo.spacexdata.testUtils.getValue
 import com.demo.spacexdata.testUtils.testLaunch1
 import com.demo.spacexdata.testUtils.testLaunch2

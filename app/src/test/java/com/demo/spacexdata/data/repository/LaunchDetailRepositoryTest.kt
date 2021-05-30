@@ -64,7 +64,7 @@ class LaunchDetailRepositoryTest {
 
         val something = launchDetailRepository.getLaunchDetailFromApi(flightNumber)
 
-        verify(spaceService, times(1)).getLaunchDetails(flightNumber)
+        verify(spaceService, times(1))
     }
 
     @Test
