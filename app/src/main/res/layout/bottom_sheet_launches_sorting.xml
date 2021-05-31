@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorOnPrimary"
     android:orientation="vertical">
 
     <TextView
@@ -37,7 +38,7 @@
             android:id="@+id/radio_button_flight_number_newest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:buttonTint="@color/design_default_color_background"
+            android:buttonTint="@color/design_dark_default_color_surface"
             android:text="@string/launch_year_newest"
             android:textColor="@color/colorOnSurface" />
 
@@ -45,7 +46,7 @@
             android:id="@+id/radio_button_flight_number_oldest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:buttonTint="@color/design_default_color_background"
+            android:buttonTint="@color/design_dark_default_color_surface"
             android:text="@string/launch_year_oldest"
             android:textColor="@color/colorOnSurface" />
 
@@ -53,7 +54,7 @@
             android:id="@+id/radio_button_mission_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:buttonTint="@color/design_default_color_background"
+            android:buttonTint="@color/design_dark_default_color_surface"
             android:text="@string/mission_name"
             android:textColor="@color/colorOnSurface" />
 
@@ -80,7 +81,7 @@
             android:id="@+id/radio_button_success"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:buttonTint="@color/design_default_color_background"
+            android:buttonTint="@color/colorOnSecondary"
             android:text="@string/filter_by_success"
             android:textColor="@color/colorOnSurface" />
     </RadioGroup>

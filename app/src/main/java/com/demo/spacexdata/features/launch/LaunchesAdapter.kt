@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.demo.spacexdata.R
 import com.demo.spacexdata.data.model.Launch
 import com.demo.spacexdata.databinding.LaunchesRecyclerItemBinding
 
@@ -32,6 +33,11 @@ class LaunchesAdapter(private val itemClickListener: OnItemClickListener) :
                 textFlightNumber.text = launch.flight_number.toString()
                 textLaunchDate.text = launch.launch_year.toString()
                 textMissionName.text = launch.mission_name
+                if (launch.launch_success == true) {
+                    imageMissionStatus.setBackgroundResource(R.drawable.ic_success)
+                } else {
+                    imageMissionStatus.setBackgroundResource(R.drawable.ic_failure)
+                }
                 itemView.setOnClickListener {
                     if (adapterPosition != -1) itemClickListener.onItemClicked(
                         launch.flight_number.toString(),

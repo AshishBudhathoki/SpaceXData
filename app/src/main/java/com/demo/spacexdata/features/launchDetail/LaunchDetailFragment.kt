@@ -23,7 +23,6 @@ class LaunchDetailFragment : Fragment(R.layout.fragment_launch_detail) {
         setHasOptionsMenu(true)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -68,14 +67,25 @@ class LaunchDetailFragment : Fragment(R.layout.fragment_launch_detail) {
     private fun setUpUIFromData(binding: FragmentLaunchDetailBinding) {
         viewModel.loadData(flightNumber, rocketId)
         val rocketDetail = viewModel.rocketDetail
-        binding.textViewRocketId.text = rocketDetail.wikipedia
-        binding.textViewRocketId.setOnClickListener {
-            openWebUrl(rocketDetail.wikipedia)
+        binding.apply {
+            textViewFirstFlight.text = rocketDetail.first_flight
+            textViewCountry.text = rocketDetail.country
+            textViewCompany.text = rocketDetail.company
+            textViewRocketName.text = rocketDetail.rocket_name
+            textViewDescription.text = rocketDetail.description
+            textViewWikipedia.text = rocketDetail.wikipedia
+            textViewWikipedia.setOnClickListener {
+                openWebUrl(rocketDetail.wikipedia)
+            }
         }
         val launchDetail = viewModel.launchDetail
         if (launchDetail != null) {
-            Timber.d("Response: $launchDetail.details")
-            binding.textViewFlightId.text = launchDetail.flight_number.toString()
+            binding.apply {
+                textViewFlightId.text = launchDetail.flight_number.toString()
+                textViewLaunchYear.text = launchDetail.launch_year.toString()
+                textViewLaunchSuccess.text = launchDetail.launch_success.toString()
+                textViewLaunchDetails.text = launchDetail.details.toString()
+            }
         }
     }
 

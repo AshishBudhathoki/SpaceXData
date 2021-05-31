@@ -16,7 +16,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_toStartOf="@id/image_mission_patch"
+        android:layout_toStartOf="@id/image_mission_status"
         tools:text="Flight number: 85" />
 
     <TextView
@@ -41,16 +41,15 @@
         tools:text="2007-03-21T01:10:00.000Z" />
 
     <ImageView
-        android:id="@+id/image_mission_patch"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:id="@+id/image_mission_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_launcher_background" />
+        android:scaleType="fitCenter" />
 
 </RelativeLayout>
