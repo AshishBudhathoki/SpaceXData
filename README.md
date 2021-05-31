@@ -32,8 +32,8 @@ and provide all data needed for View,and Model will storing data and handle the 
 
 
 ## Testing
-*app/test/ - Unit tests - test -> Right click on package name(com.demo.spacexdata) -> Run Test In 'com.demo.spacexdata'
-*app/androidTest/ - Instrumentation tests - androidTest -> Right click on package name(com.demo.spacexdata) -> Run Test In 'com.demo.spacexdata'
+* app/test/ - Unit tests - test -> Right click on package name(com.demo.spacexdata) -> Run Test In 'com.demo.spacexdata'
+* app/androidTest/ - Instrumentation tests - androidTest -> Right click on package name(com.demo.spacexdata) -> Run Test In 'com.demo.spacexdata'
 
 ## Libraries
 Following are the Libraries used:
