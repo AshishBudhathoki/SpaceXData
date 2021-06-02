@@ -7,9 +7,13 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.demo.spacexdata.R
+import com.demo.spacexdata.data.model.LaunchDetail
+import com.demo.spacexdata.data.model.RocketDetail
 import com.demo.spacexdata.databinding.FragmentLaunchDetailBinding
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.launch
 import timber.log.Timber
 import kotlin.properties.Delegates
 
@@ -66,27 +70,33 @@ class LaunchDetailFragment : Fragment(R.layout.fragment_launch_detail) {
 
     private fun setUpUIFromData(binding: FragmentLaunchDetailBinding) {
         viewModel.loadData(flightNumber, rocketId)
-        val rocketDetail = viewModel.rocketDetail
-        binding.apply {
-            textViewFirstFlight.text = rocketDetail.first_flight
-            textViewCountry.text = rocketDetail.country
-            textViewCompany.text = rocketDetail.company
-            textViewRocketName.text = rocketDetail.rocket_name
-            textViewDescription.text = rocketDetail.description
-            textViewWikipedia.text = rocketDetail.wikipedia
-            textViewWikipedia.setOnClickListener {
-                openWebUrl(rocketDetail.wikipedia)
-            }
-        }
-        val launchDetail = viewModel.launchDetail
-        if (launchDetail != null) {
-            binding.apply {
-                textViewFlightId.text = launchDetail.flight_number.toString()
-                textViewLaunchYear.text = launchDetail.launch_year.toString()
-                textViewLaunchSuccess.text = launchDetail.launch_success.toString()
-                textViewLaunchDetails.text = launchDetail.details.toString()
-            }
-        }
+        viewModel.getRocketDetail()
+            .observe(viewLifecycleOwner, Observer<RocketDetail> { rocketDetail ->
+                if (rocketDetail != null) {
+                    binding.apply {
+                        textViewFirstFlight.text = rocketDetail.first_flight
+                        textViewCountry.text = rocketDetail.country
+                        textViewCompany.text = rocketDetail.company
+                        textViewRocketName.text = rocketDetail.rocket_name
+                        textViewDescription.text = rocketDetail.description
+                        textViewWikipedia.text = rocketDetail.wikipedia
+                        textViewWikipedia.setOnClickListener {
+                            openWebUrl(rocketDetail.wikipedia)
+                        }
+                    }
+                }
+                viewModel.getLaunchDetail()
+                    .observe(viewLifecycleOwner, Observer<LaunchDetail> { launchDetail ->
+                        if (launchDetail != null) {
+                            binding.apply {
+                                textViewFlightId.text = launchDetail.flight_number.toString()
+                                textViewLaunchYear.text = launchDetail.launch_year.toString()
+                                textViewLaunchSuccess.text = launchDetail.launch_success.toString()
+                                textViewLaunchDetails.text = launchDetail.details.toString()
+                            }
+                        }
+                    })
+            })
     }
 
     private fun getDataFromLaunchFragment() {

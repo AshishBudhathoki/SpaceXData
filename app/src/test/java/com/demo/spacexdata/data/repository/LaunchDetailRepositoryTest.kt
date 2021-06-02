@@ -39,9 +39,6 @@ class LaunchDetailRepositoryTest {
     @Mock
     private lateinit var spaceService: SpaceXApi
 
-    @Mock
-    private lateinit var launchesDao: SpaceXDao
-
     // Class under test
     private lateinit var launchDetailRepository: LaunchDetailRepository
 
@@ -49,7 +46,7 @@ class LaunchDetailRepositoryTest {
     fun setup() {
         MockitoAnnotations.initMocks(this)
 
-        launchDetailRepository = LaunchDetailRepository(spaceService, launchesDao)
+        launchDetailRepository = LaunchDetailRepository(spaceService)
     }
 
 
@@ -62,9 +59,9 @@ class LaunchDetailRepositoryTest {
             return@thenAnswer responseSuccess
         }
 
-        val something = launchDetailRepository.getLaunchDetailFromApi(flightNumber)
+        launchDetailRepository.getLaunchDetailFromApi(flightNumber)
 
-        verify(spaceService, times(1))
+        verify(spaceService, times(1)).getLaunchDetails(flightNumber)
     }
 
     @Test
@@ -93,7 +90,7 @@ class LaunchDetailRepositoryTest {
             return@thenAnswer responseSuccess
         }
 
-        val something = launchDetailRepository.getRocketDetailFromApi(rocketId)
+        launchDetailRepository.getRocketDetailFromApi(rocketId)
 
         verify(spaceService, times(1)).getRocketDetails(rocketId)
     }

@@ -9,28 +9,35 @@ import com.demo.spacexdata.data.model.RocketDetail
 import com.demo.spacexdata.utils.ResultWrapper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
+import retrofit2.Response
+import timber.log.Timber
 import javax.inject.Inject
 
 class LaunchDetailRepository @Inject constructor(
-    private val spaceXApi: SpaceXApi,
-    private val spaceXLaunchDao: SpaceXDao
+    private val spaceXApi: SpaceXApi
 ) {
     // Variables for showing/hiding loading indicators
     private val areLaunchDetailLoading: MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun getLaunchDetailLoadingStatus(): LiveData<Boolean> = areLaunchDetailLoading
 
-    suspend fun getLaunchDetailFromApi(flightNumber: Int): ResultWrapper<LaunchDetail> {
+    suspend fun getLaunchDetailFromApi(flightNumber: Int): ResultWrapper<Flow<Response<LaunchDetail>>> {
         return CustomNetworkCall.safeApiCall {
-            spaceXApi.getLaunchDetails(flightNumber).body()!!
+            flow {
+                emit(spaceXApi.getLaunchDetails(flightNumber))
+            }
         }
     }
 
-    suspend fun getRocketDetailFromApi(rocketID: String): ResultWrapper<RocketDetail> {
+    suspend fun getRocketDetailFromApi(rocketID: String): ResultWrapper<Flow<Response<RocketDetail>>> {
         areLaunchDetailLoading.postValue(true)
         val responseFromApi = CustomNetworkCall.safeApiCall {
-            spaceXApi.getRocketDetails(rocketID).body()!!
+            flow {
+                emit(spaceXApi.getRocketDetails(rocketID))
+            }
         }
         areLaunchDetailLoading.postValue(false)
         return responseFromApi
@@ -45,6 +52,7 @@ class LaunchDetailRepository @Inject constructor(
                     var result = apiCall.invoke()
                     ResultWrapper.Success(result)
                 } catch (throwable: Exception) {
+                    Timber.d("ERROR MESSAGE: ${throwable.message}")
                     ResultWrapper.GenericError(throwable)
                 }
             }
